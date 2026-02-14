@@ -28,6 +28,26 @@
             min-height: 100vh;
         }
 
+        /* Drag & Drop Overlay */
+        body.dragging::after {
+            content: "Drop PDF here";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(37, 99, 235, 0.9);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            backdrop-filter: blur(4px);
+            pointer-events: none;
+        }
+
         /* Top Bar */
         header {
             background: var(--surface);
@@ -96,24 +116,55 @@
             white-space: nowrap;
         }
 
+        /* --- Juicy Interactions --- */
+
+        /* Global Transition */
+        a,
+        button,
+        .file-label,
+        input {
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .status-card {
+            transition: box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Modern Button: Lift & Glow */
         button:hover,
         .file-label:hover {
+            transform: translateY(-1px);
             border-color: var(--text-muted);
             background-color: #f9fafb;
         }
 
-        /* Primary Button Style */
+        button:active,
+        .file-label:active {
+            transform: translateY(0);
+        }
+
+        /* Primary Button: Juicy Pop */
         .file-label.primary,
         button.primary {
             background-color: var(--primary);
             color: white;
             border-color: transparent;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3), 0 2px 4px -1px rgba(37, 99, 235, 0.1);
+            /* Colored shadow base */
         }
 
         .file-label.primary:hover,
         button.primary:hover {
             background-color: var(--primary-hover);
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4), 0 4px 6px -2px rgba(37, 99, 235, 0.2);
+            /* Juicy lift shadow */
+            transform: translateY(-2px);
+        }
+
+        .file-label.primary:active,
+        button.primary:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
         }
 
         /* Subtle Button Style (Page Controls) */
@@ -175,22 +226,19 @@
             }
         }
 
-        /* Floating Status Card */
-        .status-card {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--surface);
-            padding: 12px 24px;
-            border-radius: 99px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            z-index: 100;
-            font-size: 0.95rem;
+        /* Status Card Hover */
+        /* Status Card Hover */
+        /* Status Card Hover */
+        .status-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: var(--primary);
+        }
+
+        .separator {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 48px 0;
+            opacity: 0.6;
         }
 
         .metric {
@@ -324,16 +372,16 @@
         }
 
         .file-label.big {
-            padding: 12px 32px;
-            font-size: 1.125rem;
+            padding: 16px 40px;
+            /* Slightly larger padding for "juiciness" */
+            font-size: 1.25rem;
             margin-bottom: 48px;
-            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3), 0 2px 4px -1px rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            /* Softer corners */
+            font-weight: 600;
         }
 
-        .file-label.big:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 8px -1px rgba(59, 130, 246, 0.4), 0 3px 6px -1px rgba(59, 130, 246, 0.2);
-        }
+        /* Hover is now handled by the global primary button styles above */
 
         .sub-links {
             display: flex;
@@ -475,7 +523,11 @@
         .mini-nav a:hover,
         .mini-nav button:hover {
             color: var(--primary);
-            text-decoration: underline;
+            text-decoration: none;
+            background-color: rgba(37, 99, 235, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            /* No negative margin needed as these are inline-block/flex items usually */
         }
 
         .separator {
@@ -698,7 +750,11 @@
 
         .footer-links a:hover {
             color: var(--primary);
-            text-decoration: underline;
+            text-decoration: none;
+            background-color: rgba(37, 99, 235, 0.05);
+            border-radius: 4px;
+            padding: 2px 4px;
+            margin: -2px -4px;
         }
 
         .copy {

@@ -410,11 +410,13 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "./pdfjs/pdf.worker.mjs.js";
 
     // --- UI Listeners ---
 
-    fileEl.addEventListener("change", async (ev) => {
-        const file = ev.target.files?.[0];
-        if (!file) return;
+    function handleFile(file) {
+        if (!file || file.type !== 'application/pdf') {
+            alert("Please drop a valid PDF file.");
+            return;
+        }
 
-        // Switch view
+        // Update UI
         introPanel.classList.add("hidden");
         pdfCanvasEl.style.display = "block";
         overlayEl.style.display = "block";
@@ -422,7 +424,34 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "./pdfjs/pdf.worker.mjs.js";
         measurements = [];
         tempPoint = null;
         setResult("Click to measure");
-        await loadPdfFromFile(file);
+        loadPdfFromFile(file);
+    }
+
+    fileEl.addEventListener("change", async (ev) => {
+        const file = ev.target.files?.[0];
+        if (file) handleFile(file);
+    });
+
+    // --- Drag & Drop ---
+    window.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        document.body.classList.add("dragging");
+    });
+
+    window.addEventListener("dragleave", (e) => {
+        // Only remove if we leave the window
+        if (!e.relatedTarget || e.relatedTarget.nodeName === "HTML") {
+            document.body.classList.remove("dragging");
+        }
+    });
+
+    window.addEventListener("drop", (e) => {
+        e.preventDefault();
+        document.body.classList.remove("dragging");
+
+        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            handleFile(e.dataTransfer.files[0]);
+        }
     });
 
     prevBtn.addEventListener("click", async () => {
