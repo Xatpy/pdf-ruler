@@ -1,10 +1,12 @@
         :root {
-            --primary: #3b82f6;
-            --primary-hover: #2563eb;
+            /* Darker blue for better contrast against white (WCAG AA) */
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
             --bg: #f3f4f6;
             --surface: #ffffff;
             --text-main: #111827;
-            --text-muted: #6b7280;
+            /* Darker grey for better readability */
+            --text-muted: #4b5563;
             --border: #e5e7eb;
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
