@@ -112,21 +112,14 @@
         </div>
     </header>
 
-    <!-- Trust Strip -->
-    <div class="trust-strip">
-        <span>Local-only</span> &bull; <span>No uploads</span> &bull; <span>Open source</span>
-    </div>
-
     <div id="canvasWrap">
         <!-- Intro / Empty State -->
         <div id="intro-panel">
             <h1>Measure PDFs instantly.</h1>
             <p>Runs entirely in your browser. Your PDF never leaves your device.</p>
-            <label for="file" class="file-label primary big">Open PDF</label>
             <div class="sub-links">
-                <button id="howItWorksBtn" class="link-btn">How it works</button> &middot;
                 <button id="privacyLinkBtn" class="link-btn">Privacy</button> &middot;
-                <a href="https://github.com/yourusername/pdf-ruler" target="_blank" class="link-btn">GitHub</a>
+                <a href="https://github.com/Xatpy/pdf-ruler" target="_blank" class="link-btn">GitHub</a>
             </div>
         </div>
 
@@ -184,9 +177,9 @@
 
             <nav class="mini-nav">
                 <a href="#guides">Guides</a>
-                <a href="#" id="howItWorksLink">How it works</a>
+                <a href="pages/measure-distance-in-pdf.html">How it works</a>
                 <button id="miniPrivacyBtn" class="link-btn">Privacy</button>
-                <a href="https://github.com/yourusername/pdf-ruler" target="_blank">GitHub</a>
+                <a href="https://github.com/Xatpy/pdf-ruler" target="_blank">GitHub</a>
             </nav>
         </section>
 
@@ -230,7 +223,7 @@
     </main>
 
     <footer class="minimal-footer">
-        &copy; 2026 PDF Ruler. <a href="https://github.com/yourusername/pdf-ruler">Open Source</a>.
+        &copy; 2026 PDF Ruler. <a href="https://github.com/Xatpy/pdf-ruler">Open Source</a>.
     </footer>
 
     <script>
@@ -243,21 +236,7 @@
             });
         }
 
-        const howItWorksLink = document.getElementById('howItWorksLink');
-        const introPanel = document.getElementById('intro-panel');
-        if (howItWorksLink) {
-            howItWorksLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                // Simple behavior: reload if intro panel is hidden to show it again, 
-                // or just scroll top if it's already there?
-                // The tool is simple enough that "How it works" is basically the intro screen.
-                if (introPanel && introPanel.classList.contains('hidden')) {
-                    window.location.reload();
-                } else {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-            });
-        }
+
     </script>
 </body>
 
