@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <!-- SEO & Metadata -->
     <meta name="description"
         content="Free online tool to measure distances in PDF files. Auto-calibrated for A4, privacy-focused, and mobile-friendly." />
     <meta name="keywords" content="PDF ruler, measure PDF, online ruler, PDF measurement tool, A4 ruler" />
@@ -13,19 +12,17 @@
     <meta property="og:description"
         content="Free online tool to measure distances in PDF files. Auto-calibrated for A4, privacy-focused, and mobile-friendly." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://xatpy.github.io/pdf-ruler/" />
-    <meta property="og:image" content="https://xatpy.github.io/pdf-ruler/assets/og-image.png" />
+    <meta property="og:url" content="https://www.chapiware.com/pdf-ruler/" />
+    <meta property="og:image" content="https://www.chapiware.com/pdf-ruler/assets/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PDF Ruler | Precision Measurement Tool" />
     <meta name="twitter:description"
         content="Measure distances in PDF files instantly. Private, secure, and works offline." />
-    <meta name="twitter:image" content="https://xatpy.github.io/pdf-ruler/assets/og-image.png" />
+    <meta name="twitter:image" content="https://www.chapiware.com/pdf-ruler/assets/og-image.png" />
 
-    <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -33,6 +30,7 @@
       "name": "PDF Ruler",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any",
+      "url": "https://www.chapiware.com/pdf-ruler/",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -52,7 +50,6 @@
 
 <body>
     <header>
-        <!-- Left Group: Brand + Open PDF -->
         <div class="header-left">
             <div class="brand">
                 <img src="assets/logo-sm.png" alt="Logo" width="24" height="24">
@@ -69,7 +66,6 @@
             <input id="file" type="file" accept="application/pdf" />
         </div>
 
-        <!-- Center Group: Page Controls -->
         <div class="header-center">
             <div class="page-controls">
                 <button id="prev" class="subtle" title="Previous Page">
@@ -86,7 +82,6 @@
             </div>
         </div>
 
-        <!-- Right Group: Zoom + Clear -->
         <div class="header-right">
             <a href="https://github.com/Xatpy/pdf-ruler" target="_blank" class="icon-link" aria-label="GitHub">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -113,7 +108,6 @@
     </header>
 
     <div id="canvasWrap">
-        <!-- Intro / Empty State -->
         <div id="intro-panel">
             <h1>Measure PDFs instantly.</h1>
             <p>Runs entirely in your browser. Your PDF never leaves your device.</p>
@@ -130,13 +124,11 @@
         </div>
     </div>
 
-    <!-- Floating Metric Bar -->
     <div class="status-card">
         <span id="result" class="metric">-</span>
         <span id="status" class="meta">Load a PDF to start</span>
     </div>
 
-    <!-- Privacy Modal -->
     <dialog id="privacyModal">
         <div class="modal-content">
             <h2>Privacy & Security</h2>
@@ -158,7 +150,6 @@
 
     <script type="module" src="./app.js"></script>
 
-    <!-- Tool-First Info Section (Minimal) -->
     <main class="tool-info">
         <section class="info-header">
             <h1>PDF Ruler — Measure distance in a PDF locally in your browser</h1>
@@ -227,7 +218,6 @@
     </footer>
 
     <script>
-        // Mini script for the new privacy button
         const miniPrivacyBtn = document.getElementById('miniPrivacyBtn');
         const privacyModal = document.getElementById('privacyModal');
         if (miniPrivacyBtn && privacyModal) {
@@ -235,8 +225,6 @@
                 privacyModal.showModal();
             });
         }
-
-
     </script>
 </body>
 

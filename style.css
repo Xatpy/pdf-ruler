@@ -321,14 +321,14 @@
             line-height: 1.5;
         }
 
-        #intro-panel .file-label.big {
+        .file-label.big {
             padding: 12px 32px;
             font-size: 1.125rem;
             margin-bottom: 48px;
             box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3), 0 2px 4px -1px rgba(59, 130, 246, 0.1);
         }
 
-        #intro-panel .file-label.big:hover {
+        .file-label.big:hover {
             transform: translateY(-1px);
             box-shadow: 0 6px 8px -1px rgba(59, 130, 246, 0.4), 0 3px 6px -1px rgba(59, 130, 246, 0.2);
         }
@@ -584,4 +584,125 @@
             .info-header h1 {
                 font-size: 1.5rem;
             }
+
+            .section-hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* --- Landing Pages (Guides) --- */
+        .marketing-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            color: var(--text-main);
+        }
+
+        .marketing-content section {
+            margin-bottom: 60px;
+        }
+
+        .marketing-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            color: var(--text-main);
+        }
+
+        .marketing-content p {
+            line-height: 1.6;
+            margin-bottom: 16px;
+            color: var(--text-muted);
+        }
+
+        .marketing-content ul,
+        .marketing-content ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .marketing-content li {
+            margin-bottom: 8px;
+        }
+
+        /* Landing Page Hero */
+        .section-hero {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .section-hero h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .section-hero .subhead {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        /* FAQ on Landing Pages */
+        .section-faq {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .section-faq h2 {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .faq-item {
+            margin-bottom: 24px;
+        }
+
+        .faq-item h3 {
+            font-size: 1.1rem;
+            margin: 0 0 8px;
+            color: var(--text-main);
+        }
+
+        /* Footer on Landing Pages */
+        .footer-links {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-links h4 {
+            margin-top: 0;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .footer-links a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .copy {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            padding: 20px;
+            border-top: 1px solid var(--border);
         }

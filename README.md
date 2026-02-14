@@ -2,7 +2,7 @@
 
 A simple, privacy-focused tool to visualize and measure distances on A4 PDF documents directly in your browser.
 
-![Screenshot](/Users/jaime/.gemini/antigravity/brain/0540e915-8fc7-4461-a5f9-47445ca46eb7/media__1771081358972.png)
+![Screenshot](./assets/pdfrulerlogo.png)
 
 ## Features
 
