@@ -438,5 +438,36 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "./pdfjs/pdf.worker.mjs.js";
         setResult("Cleared");
     });
 
+    // --- Touch Support ---
+
+    function handleTouch(ev) {
+        if (ev.target !== overlay) return;
+        ev.preventDefault(); // Prevent scrolling while drawing on canvas
+
+        const touch = ev.changedTouches[0];
+        const rect = overlay.getBoundingClientRect();
+
+        // Create a fake mouse event
+        const mouseEvent = new MouseEvent(
+            {
+                touchstart: "mousedown",
+                touchmove: "mousemove",
+                touchend: "mouseup"
+            }[ev.type],
+            {
+                bubbles: true,
+                cancelable: true,
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            }
+        );
+
+        overlay.dispatchEvent(mouseEvent);
+    }
+
+    overlay.addEventListener("touchstart", handleTouch, { passive: false });
+    overlay.addEventListener("touchmove", handleTouch, { passive: false });
+    overlay.addEventListener("touchend", handleTouch, { passive: false });
+
     setStatus("Load a PDF to start.");
 })();

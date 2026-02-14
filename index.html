@@ -65,6 +65,48 @@
             display: flex;
             gap: 12px;
             align-items: center;
+            flex-wrap: wrap;
+            /* Allow wrapping on small screens */
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                padding: 12px;
+            }
+
+            .controls {
+                width: 100%;
+                justify-content: space-between;
+                gap: 8px;
+            }
+
+            .brand {
+                font-size: 1rem;
+            }
+
+            /* Stack specific controls if needed or adjust sizes */
+            button,
+            .file-label {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            .zoom-group input {
+                width: 40px;
+            }
+
+            /* Status card smaller on mobile */
+            .status-card {
+                width: 90%;
+                bottom: 16px;
+                padding: 8px 16px;
+                font-size: 0.85rem;
+                justify-content: center;
+            }
         }
 
         /* Modern Button */
