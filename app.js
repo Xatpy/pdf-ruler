@@ -23,11 +23,18 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "./pdfjs/pdf.worker.mjs.js";
     const nextBtn = document.getElementById("next");
     const pageLabel = document.getElementById("pageLabel");
     const zoomEl = document.getElementById("zoom");
-    const applyZoomBtn = document.getElementById("applyZoom");
 
     const statusEl = document.getElementById("status");
     const resultEl = document.getElementById("result");
     const clearBtn = document.getElementById("clear");
+
+    // Trust & Marketing Elements
+    const introPanel = document.getElementById("intro-panel");
+    const pdfCanvasEl = document.getElementById("pdfCanvas");
+    const overlayEl = document.getElementById("overlay");
+    const privacyModal = document.getElementById("privacyModal");
+    const privacyBtns = document.querySelectorAll("#privacyBtn, #privacyLinkBtn, #howItWorksBtn");
+    const closeModalBtn = document.getElementById("closeModal");
 
     // Re-assign worker source
     pdfjsLib.GlobalWorkerOptions.workerSrc = "./pdfjs/pdf.worker.mjs.js";
@@ -406,6 +413,12 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "./pdfjs/pdf.worker.mjs.js";
     fileEl.addEventListener("change", async (ev) => {
         const file = ev.target.files?.[0];
         if (!file) return;
+
+        // Switch view
+        introPanel.classList.add("hidden");
+        pdfCanvasEl.style.display = "block";
+        overlayEl.style.display = "block";
+
         measurements = [];
         tempPoint = null;
         setResult("Click to measure");
@@ -424,7 +437,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "./pdfjs/pdf.worker.mjs.js";
         await renderPage(pageNum);
     });
 
-    applyZoomBtn.addEventListener("click", async () => {
+    zoomEl.addEventListener("change", async () => {
         const z = parseFloat(zoomEl.value);
         if (!Number.isFinite(z) || z <= 0) return;
         scale = z;
@@ -469,5 +482,19 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "./pdfjs/pdf.worker.mjs.js";
     overlay.addEventListener("touchmove", handleTouch, { passive: false });
     overlay.addEventListener("touchend", handleTouch, { passive: false });
 
-    setStatus("Load a PDF to start.");
+    setStatus("Ready • Local-only • No uploads");
+
+    // --- Modal Logic ---
+    privacyBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (privacyModal) privacyModal.showModal();
+        });
+    });
+
+    if (closeModalBtn && privacyModal) {
+        closeModalBtn.addEventListener("click", () => privacyModal.close());
+        privacyModal.addEventListener("click", (e) => {
+            if (e.target === privacyModal) privacyModal.close();
+        });
+    }
 })();

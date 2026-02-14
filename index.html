@@ -4,263 +4,62 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- SEO & Metadata -->
+    <meta name="description"
+        content="Free online tool to measure distances in PDF files. Auto-calibrated for A4, privacy-focused, and mobile-friendly." />
+    <meta name="keywords" content="PDF ruler, measure PDF, online ruler, PDF measurement tool, A4 ruler" />
+    <meta property="og:title" content="PDF Ruler | Precision Measurement Tool" />
+    <meta property="og:description"
+        content="Free online tool to measure distances in PDF files. Auto-calibrated for A4, privacy-focused, and mobile-friendly." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pdf-ruler.com" />
+    <meta property="og:image" content="https://pdf-ruler.com/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PDF Ruler | Precision Measurement Tool" />
+    <meta name="twitter:description"
+        content="Measure distances in PDF files instantly. Private, secure, and works offline." />
+    <meta name="twitter:image" content="https://pdf-ruler.com/assets/og-image.png" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "PDF Ruler",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": "Auto-calibration, Multiple measurements, Mobile support, Privacy-focused"
+    }
+    </script>
+
     <title>PDF Ruler | Precision Measurement Tool</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #3b82f6;
-            --primary-hover: #2563eb;
-            --bg: #f3f4f6;
-            --surface: #ffffff;
-            --text-main: #111827;
-            --text-muted: #6b7280;
-            --border: #e5e7eb;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            margin: 0;
-            padding-bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* Top Bar */
-        header {
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            padding: 12px 24px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .brand {
-            font-weight: 600;
-            font-size: 1.125rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Controls Area */
-        .controls {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            flex-wrap: wrap;
-            /* Allow wrapping on small screens */
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-                padding: 12px;
-            }
-
-            .controls {
-                width: 100%;
-                justify-content: space-between;
-                gap: 8px;
-            }
-
-            .brand {
-                font-size: 1rem;
-            }
-
-            /* Stack specific controls if needed or adjust sizes */
-            button,
-            .file-label {
-                padding: 6px 12px;
-                font-size: 0.8rem;
-            }
-
-            .zoom-group input {
-                width: 40px;
-            }
-
-            /* Status card smaller on mobile */
-            .status-card {
-                width: 90%;
-                bottom: 16px;
-                padding: 8px 16px;
-                font-size: 0.85rem;
-                justify-content: center;
-            }
-        }
-
-        /* Modern Button */
-        button,
-        .file-label {
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        button:hover,
-        .file-label:hover {
-            border-color: var(--text-muted);
-            background-color: #f9fafb;
-        }
-
-        button.primary {
-            background-color: var(--primary);
-            color: white;
-            border-color: transparent;
-        }
-
-        button.primary:hover {
-            background-color: var(--primary-hover);
-        }
-
-        input[type="file"] {
-            display: none;
-        }
-
-        /* Inputs */
-        .zoom-group {
-            display: flex;
-            align-items: center;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            overflow: hidden;
-            background: var(--surface);
-        }
-
-        .zoom-group input {
-            border: none;
-            padding: 8px;
-            width: 60px;
-            text-align: center;
-            font-size: 0.875rem;
-            outline: none;
-        }
-
-        .zoom-group button {
-            border: none;
-            border-left: 1px solid var(--border);
-            border-radius: 0;
-            margin: 0;
-            padding: 8px 12px;
-        }
-
-        /* Floating Status Card */
-        .status-card {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--surface);
-            padding: 12px 24px;
-            border-radius: 99px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            z-index: 100;
-            font-size: 0.95rem;
-        }
-
-        .metric {
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .meta {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-left: 1px solid var(--border);
-            padding-left: 16px;
-        }
-
-        /* Canvas Area */
-        #canvasWrap {
-            margin-top: 24px;
-            position: relative;
-            box-shadow: var(--shadow-md);
-            border-radius: 4px;
-            /* subtle rounding for PDF page */
-            overflow: hidden;
-            background: white;
-            /* page background */
-        }
-
-        canvas {
-            display: block;
-        }
-
-        #overlay {
-            position: absolute;
-            left: 0;
-            top: 0;
-            cursor: crosshair;
-            /* Default cursor for measuring */
-        }
-
-        /* Magnifier */
-        #magnifier {
-            display: none;
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            z-index: 200;
-            pointer-events: none;
-            background: white;
-        }
-    </style>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
-        <div class="brand">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21.5 12H2.5" />
-                <path d="M21.5 5H2.5" />
-                <path d="M21.5 19H2.5" />
-                <path d="M7 5v14" />
-                <path d="M17 5v14" />
-                <path d="M12 5v14" />
-            </svg>
-            PDF Ruler
-        </div>
+        <!-- Left Group: Brand + Open PDF -->
+        <div class="header-left">
+            <div class="brand">
+                <img src="assets/logo-sm.png" alt="Logo" width="24" height="24">
+                PDF Ruler
+            </div>
 
-        <div class="controls">
-            <label for="file" class="file-label">
+            <label for="file" class="file-label primary">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
                     <polyline points="13 2 13 9 20 9" />
@@ -268,37 +67,71 @@
                 Open PDF
             </label>
             <input id="file" type="file" accept="application/pdf" />
+        </div>
 
-            <div class="divider" style="width: 1px; height: 24px; background: var(--border); margin: 0 8px;"></div>
-
-            <button id="prev">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="15 18 9 12 15 6" />
-                </svg>
-            </button>
-            <span id="pageLabel"
-                style="font-variant-numeric: tabular-nums; font-size: 0.9rem; min-width: 60px; text-align: center;">- /
-                -</span>
-            <button id="next">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="9 18 15 12 9 6" />
-                </svg>
-            </button>
-
-            <div class="divider" style="width: 1px; height: 24px; background: var(--border); margin: 0 8px;"></div>
-
-            <div class="zoom-group">
-                <input id="zoom" type="number" step="0.1" min="0.2" value="1.2" aria-label="Zoom Level" />
-                <button id="applyZoom">Zoom</button>
+        <!-- Center Group: Page Controls -->
+        <div class="header-center">
+            <div class="page-controls">
+                <button id="prev" class="subtle" title="Previous Page">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                </button>
+                <span id="pageLabel">- / -</span>
+                <button id="next" class="subtle" title="Next Page">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </button>
             </div>
+        </div>
 
-            <button id="clear" class="primary">Clear</button>
+        <!-- Right Group: Zoom + Clear -->
+        <div class="header-right">
+            <a href="https://github.com/Xatpy/pdf-ruler" target="_blank" class="icon-link" aria-label="GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                    </path>
+                </svg>
+            </a>
+            <button class="icon-btn" id="privacyBtn" aria-label="Privacy">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+            </button>
+            <div class="zoom-group">
+                <span style="font-size: 0.8rem; color: var(--text-muted); padding-left: 8px;">Zoom:</span>
+                <input id="zoom" type="number" step="0.1" min="0.2" value="1.2" aria-label="Zoom Level" />
+            </div>
+            <span class="a4-label" title="Assumes A4 paper size">A4 (auto)</span>
+
+            <button id="clear">Clear</button>
         </div>
     </header>
 
+    <!-- Trust Strip -->
+    <div class="trust-strip">
+        <span>Local-only</span> &bull; <span>No uploads</span> &bull; <span>Open source</span>
+    </div>
+
     <div id="canvasWrap">
-        <canvas id="pdfCanvas"></canvas>
-        <canvas id="overlay"></canvas>
+        <!-- Intro / Empty State -->
+        <div id="intro-panel">
+            <h1>Measure PDFs instantly.</h1>
+            <p>Runs entirely in your browser. Your PDF never leaves your device.</p>
+            <label for="file" class="file-label primary big">Open PDF</label>
+            <div class="sub-links">
+                <button id="howItWorksBtn" class="link-btn">How it works</button> &middot;
+                <button id="privacyLinkBtn" class="link-btn">Privacy</button> &middot;
+                <a href="https://github.com/yourusername/pdf-ruler" target="_blank" class="link-btn">GitHub</a>
+            </div>
+        </div>
+
+        <canvas id="pdfCanvas" style="display:none"></canvas>
+        <canvas id="overlay" style="display:none"></canvas>
         <div id="magnifier">
             <canvas id="magCanvas"></canvas>
         </div>
@@ -309,6 +142,26 @@
         <span id="result" class="metric">-</span>
         <span id="status" class="meta">Load a PDF to start</span>
     </div>
+
+    <!-- Privacy Modal -->
+    <dialog id="privacyModal">
+        <div class="modal-content">
+            <h2>Privacy & Security</h2>
+            <ul>
+                <li><strong>Works offline:</strong> Disconnect your internet and it still works.</li>
+                <li><strong>Local processing:</strong> Your PDF files are processed entirely on your device.</li>
+                <li><strong>No uploads:</strong> We never send your files to any server.</li>
+                <li><strong>No tracking:</strong> No analytics, no cookies, no pixels.</li>
+            </ul>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+                <strong>Verify it:</strong> Open Developer Tools &rarr; Network tab. You will see 0 requests when you
+                load a PDF.
+            </p>
+            <div class="modal-actions">
+                <button id="closeModal" class="primary">Close</button>
+            </div>
+        </div>
+    </dialog>
 
     <script type="module" src="./app.js"></script>
 </body>
